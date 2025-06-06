@@ -1,0 +1,23 @@
+.btn {
+    color: var(--bs-light);
+    background: var(--bs-secondary);
+}
+
+.section-title {
+    font-weight: bold;
+}
+
+.skill-icon {
+    transition: transform 0.3s ease;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.skill-icon:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.skills-section {
+    background: #f8f9fa;
+}

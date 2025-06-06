@@ -1,0 +1,13 @@
+AboutModal.tsx
+CertificationItem.tsx
+CertificationsSection.tsx
+Footer.tsx
+HeroSection.tsx
+Logo.tsx
+Navbar.tsx
+NavItem.tsx
+ProjectCard.tsx
+ProjectModal.tsx
+ProjectsSection.tsx
+SkillItem.tsx
+SkillsSection.tsx
