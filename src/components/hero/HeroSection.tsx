@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AboutModal from '../about/AboutModal';
 
 const HeroSection: React.FC = () => {
     const [showAboutModal, setShowAboutModal] = useState(false);
+
+    // Typing effect state
+    const fullText = "Olá, seja bem vindo!";
+    const [typedText, setTypedText] = useState('');
+
+    useEffect(() => {
+        let current = 0;
+        const interval = setInterval(() => {
+            setTypedText(fullText.slice(0, current + 1));
+            current++;
+            if (current === fullText.length) clearInterval(interval);
+        }, 80); // Adjust speed here
+        return () => clearInterval(interval);
+    }, []);
 
     const handleOpenModal = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -13,8 +27,8 @@ const HeroSection: React.FC = () => {
     return (
         <section>
             <div className="bg-light col-md-12 col-12 p-5 mb-4 round-3">
-                <div className="container-fluid d-flex flex-column align-items-center py-5 px-xl-5">
-                    <h1 className="display-5 fw-bold text-center mb-4">Olá, seja bem vindo!</h1>
+                <div className="container-fluid d-flex flex-column align-items-center py-1 px-xl-5">
+                    <h1 className="display-5 fw-bold text-center mb-4">{typedText}</h1>
                     <div className="d-flex flex-column-reverse justify-content-between align-items-center flex-lg-row min-vh-50 py-4">
                         <div className="text-center col-md-12 col-lg-6 px-md-5 mb-4 mb-md-0">
                             <p className="fs-4 col-md-12">Me chamo Diego Parreira e sou arquiteto de software, desenvolvedor e apaixonado por tecnologia e o seu poder de transformação!</p>

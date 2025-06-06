@@ -1,4 +1,5 @@
 import CertificationsSection from "../components/certifications/CertificationsSection";
+import PageContainer from "../components/common/PageContainer";
 import Footer from "../components/footer/Footer";
 import HeroSection from "../components/hero/HeroSection";
 import Navbar from "../components/navbar/Navbar";
@@ -8,14 +9,14 @@ import SkillsSection from "../components/skills/SkillsSection";
 function Home() {
 
     return (
-        <div>
+        <PageContainer>
             <Navbar />
             <HeroSection />
             <ProjectsSection />
             <SkillsSection />
             <CertificationsSection />
             <Footer />
-        </div>
+        </PageContainer>
     );
 }
 
