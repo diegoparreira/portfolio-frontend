@@ -18,7 +18,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin, error }) => {
     return (
         <>
             <Navbar />
-            <div className="container mt-5">
+            <div className="row align-items-center mt-5">
                 <h2>Admin Login</h2>
                 <form className="text-center w-100" onSubmit={handleSubmit} style={{ writingMode: "horizontal-tb" }}>
                     <div className="mb-3">
