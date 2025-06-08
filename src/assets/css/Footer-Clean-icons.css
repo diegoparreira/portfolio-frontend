@@ -54,30 +54,3 @@
 .bs-icon.bs-icon-circle {
     border-radius: 50%;
 }
-
-.modal-avatar {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
-
-.modal-text {
-    text-align: justify;
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-.modal-content .btn-hover {
-    transform: scale(1.02);
-    transition: all 0.3s ease;
-}
-
-.project-image {
-    max-height: 400px;
-    object-fit: cover;
-}
-
-.certification-badge {
-    max-width: 100px;
-    max-height: 100px;
-}

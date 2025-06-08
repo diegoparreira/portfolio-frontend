@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
 import SkillItem from './SkillItem';
 
 const skills = [
@@ -20,18 +21,20 @@ const skills = [
 const SkillsSection: React.FC = () => {
     return (
         <section className="skills-section py-4 py-xl-5">
-            <div className="container">
-                <div className="row mb-5">
-                    <div className="col-md-8 col-xl-6 text-center mx-auto">
+            <Container>
+                <Row className="mb-5">
+                    <Col md={8} xl={6} className="text-center mx-auto">
                         <h2 className="section-title">Skills</h2>
-                    </div>
-                </div>
-                <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 text-center g-4 row-cols-xl-6">
+                    </Col>
+                </Row>
+                <Row xs={2} sm={3} md={4} xl={6} className="text-center g-4">
                     {skills.map((skill, idx) => (
-                        <SkillItem key={idx} icon={skill.icon} label={skill.label} />
+                        <Col key={idx}>
+                            <SkillItem icon={skill.icon} label={skill.label} />
+                        </Col>
                     ))}
-                </div>
-            </div>
+                </Row>
+            </Container>
         </section>
     );
 };

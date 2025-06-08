@@ -1,32 +1,35 @@
 import React from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
 import CertificationItem from './CertificationItem';
 
 const certifications = [
     {
-        img: 'https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png',
-        label: 'AZ-900',
+        icon: 'https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png',
+        title: 'AZ-900',
     },
     {
-        img: 'https://images.credly.com/size/340x340/images/024d0122-724d-4c5a-bd83-cfe3c4b7a073/image.png',
-        label: 'GitHub Foundations',
+        icon: 'https://images.credly.com/size/340x340/images/024d0122-724d-4c5a-bd83-cfe3c4b7a073/image.png',
+        title: 'GitHub Foundations',
     },
 ];
 
 const CertificationsSection: React.FC = () => {
     return (
         <section className="skills-section py-4 py-xl-5">
-            <div className="container">
-                <div className="row mb-5">
-                    <div className="col-md-8 col-xl-6 text-center mx-auto">
+            <Container>
+                <Row className="mb-5">
+                    <Col md={8} xl={6} className="text-center mx-auto">
                         <h2 className="section-title">Certificações</h2>
-                    </div>
-                </div>
-                <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 text-center g-4 row-cols-xl-6">
+                    </Col>
+                </Row>
+                <Row xs={2} sm={3} md={4} xl={6} className="text-center g-4">
                     {certifications.map((cert, idx) => (
-                        <CertificationItem key={idx} img={cert.img} label={cert.label} />
+                        <Col key={idx}>
+                            <CertificationItem certification={cert} />
+                        </Col>
                     ))}
-                </div>
-            </div>
+                </Row>
+            </Container>
         </section>
     );
 };

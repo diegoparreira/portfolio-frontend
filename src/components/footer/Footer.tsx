@@ -1,12 +1,13 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import SocialIcon from './SocialIcon';
 
 const Footer: React.FC = () => {
     return (
         <footer className="text-center py-4">
-            <div className="container">
-                <div className="row row-cols-1 row-cols-lg-3 justify-content-between">
-                    <div className="col">
+            <Container>
+                <Row className="row-cols-1 row-cols-lg-3 justify-content-between">
+                    <Col>
                         <ul className="list-inline my-2">
                             <SocialIcon href="https://github.com/">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" className="bi bi-github">
@@ -19,12 +20,12 @@ const Footer: React.FC = () => {
                                 </svg>
                             </SocialIcon>
                         </ul>
-                    </div>
-                    <div className="col">
+                    </Col>
+                    <Col>
                         <p className="text-muted my-2">Copyright&nbsp;© 2025 Diego Parreira</p>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </footer>
     );
 };

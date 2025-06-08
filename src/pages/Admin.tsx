@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import PageContainer from "../components/common/PageContainer";
+import { useState } from "react";
 import AdminLogin from "../components/admin/AdminLogin";
 import AdminPanel from "../components/admin/AdminPanel";
+import { Container, Row } from "react-bootstrap";
+import Navbar from "../components/navbar/Navbar";
 
 function Admin() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [error, setError] = useState("");
 
     const handleLogin = (username: string, password: string) => {
-        // Simple hardcoded check for demonstration
         if (username === "admin" && password === "password") {
             setLoggedIn(true);
             setError("");
@@ -18,13 +18,16 @@ function Admin() {
     };
 
     return (
-        <PageContainer>
-            {!loggedIn ? (
-                <AdminLogin onLogin={handleLogin} error={error} />
-            ) : (
-                <AdminPanel />
-            )}
-        </PageContainer>
+        <div className="min-vh-100 d-flex flex-column bg-light">
+            <Navbar />
+            <Container fluid className="flex-grow-1 d-flex align-items-center justify-content-center p-0">
+                {!loggedIn ? (
+                    <AdminLogin onLogin={handleLogin} error={error} />
+                ) : (
+                    <AdminPanel />
+                )}
+            </Container>
+        </div>
     );
 }
 

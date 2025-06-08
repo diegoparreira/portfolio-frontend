@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card as RBCard, Button } from 'react-bootstrap';
 
 interface ProjectCardProps {
     image: string;
@@ -8,20 +9,17 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, onLearnMore }) => (
-    <div className="card">
-        <img className="card-img-top w-100 d-block fit-cover" style={{ height: 200 }} src={image} alt={title} />
-        <div className="card-body p-4">
-            {/* <div className="project-tags mb-3">
-                {tags.map((tag, i) => (
-                    <span className="text-primary bg-primary-subtle badge" key={i}>{tag}</span>
-                ))}
-            </div> */}
-            <h4 className="card-title">{title}</h4>
-            <p className="text-start card-text">{description}</p>
-            <a className="btn btn-primary btn-sm mx-auto" role="button" href="#" data-bs-toggle="modal" data-bs-target="#modal2" onClick={onLearnMore}>
-                Saiba mais
-            </a>
-        </div>
+    <div className="project-card shadow-sm rounded p-3 mb-4 h-100" onClick={onLearnMore} role="button" tabIndex={0}>
+        <RBCard>
+            <RBCard.Img variant="top" src={image} className="h-50" />
+            <RBCard.Body className="p-4">
+                <RBCard.Title as="h4">{title}</RBCard.Title>
+                <RBCard.Text className="text-start">{description}</RBCard.Text>
+                <Button variant="primary" size="sm" className="mx-auto d-block" onClick={onLearnMore}>
+                    Saiba mais
+                </Button>
+            </RBCard.Body>
+        </RBCard>
     </div>
 );
 

@@ -6,13 +6,9 @@ interface SocialIconProps {
 }
 
 const SocialIcon: React.FC<SocialIconProps> = ({ href, children }) => (
-    <li className="list-inline-item">
-        <a href={href} target="_blank" rel="noopener noreferrer">
-            <div className="bs-icon-circle bs-icon-primary bs-icon" style={{ background: 'var(--bs-secondary)' }}>
-                {children}
-            </div>
-        </a>
-    </li>
+    <a href={href} className="social-icon d-flex align-items-center justify-content-center me-3" target="_blank" rel="noopener noreferrer" aria-label={href}>
+        {children}
+    </a>
 );
 
 export default SocialIcon;
