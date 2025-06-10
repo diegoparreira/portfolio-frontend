@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
 import ProjectCard from './ProjectCard';
 import ProjectModal from '../../components/projects/ProjectModal';
 import { fetchProjects } from '../../api/projects';
@@ -8,10 +8,13 @@ import { useQuery } from '@tanstack/react-query';
 
 const ProjectsSection: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<number | null>(null);
+    const [showAll, setShowAll] = useState<boolean>(false);
     const { data: projects, isLoading, isError } = useQuery<Project[], Error>({
         queryKey: ['projects'],
         queryFn: fetchProjects,
     });
+
+    const displayedProjects: Project[] = showAll ? (projects ?? []) : (projects?.slice(0, 3) ?? []);
 
     if (isLoading) {
         return <div className="text-center py-5"><Spinner animation="border" /> Carregando projetos...</div>;
@@ -29,7 +32,7 @@ const ProjectsSection: React.FC = () => {
                 </Col>
             </Row>
             <Row className="gy-4" xs={1} md={2} xl={3}>
-                {projects.map((project, idx) => (
+                {displayedProjects && displayedProjects.map((project, idx) => (
                     <Col key={idx}>
                         <ProjectCard
                             image={project.demo_screenshot_url ? project.demo_screenshot_url : 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'}
@@ -40,6 +43,13 @@ const ProjectsSection: React.FC = () => {
                     </Col>
                 ))}
             </Row>
+            {!showAll && projects.length > 3 && (
+                <div className="text-center mt-4">
+                    <Button className="rounded-btn" onClick={() => setShowAll(true)}>
+                        ...
+                    </Button>
+                </div>
+            )}
             {selectedProject !== null && (
                 <ProjectModal
                     show={selectedProject !== null}

@@ -1,19 +1,24 @@
 import React from 'react';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Spinner, Alert } from 'react-bootstrap';
 import CertificationItem from './CertificationItem';
-
-const certifications = [
-    {
-        icon: 'https://images.credly.com/size/340x340/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png',
-        title: 'AZ-900',
-    },
-    {
-        icon: 'https://images.credly.com/size/340x340/images/024d0122-724d-4c5a-bd83-cfe3c4b7a073/image.png',
-        title: 'GitHub Foundations',
-    },
-];
+import { fetchCertifications } from '../../api/certifications';
+import { useQuery } from '@tanstack/react-query';
 
 const CertificationsSection: React.FC = () => {
+    const { data: certifications, isLoading, isError } = useQuery({
+        queryKey: ['certifications'],
+        queryFn: fetchCertifications,
+    });
+
+    if (isLoading) {
+        return <div className="text-center py-5"><Spinner animation="border" /> Carregando certificações...</div>;
+    }
+
+    if (isError || !certifications) {
+        return <Alert variant="danger" className="text-center py-5">Erro ao carregar certificações.</Alert>;
+    }
+
+
     return (
         <section className="skills-section py-4 py-xl-5">
             <Container>
@@ -23,7 +28,7 @@ const CertificationsSection: React.FC = () => {
                     </Col>
                 </Row>
                 <Row xs={2} sm={3} md={4} xl={6} className="text-center g-4">
-                    {certifications.map((cert, idx) => (
+                    {certifications?.map((cert, idx) => (
                         <Col key={idx}>
                             <CertificationItem certification={cert} />
                         </Col>
