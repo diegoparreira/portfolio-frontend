@@ -21,13 +21,13 @@ function Admin() {
     return (
         <div className="min-vh-100 d-flex flex-column bg-light">
             <Navbar />
-            <Container fluid className="flex-grow-1 d-flex align-items-center justify-content-center p-0">
+            <div className="admin-content">
                 {!loggedIn ? (
                     <AdminLogin onLogin={handleLogin} error={error} />
                 ) : (
                     <AdminPanel />
                 )}
-            </Container>
+            </div>
             <Footer />
         </div>
     );

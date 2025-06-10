@@ -27,3 +27,11 @@ export const fetchProjects = async (): Promise<Project[]> => {
         throw error;
     }
 };
+
+export const createProject = async (data: Partial<Project>): Promise<Project> => {
+    throw new Error("createProject function is not implemented yet");
+};
+
+export const updateProject = async (id: string | number, data: Partial<Project>): Promise<Project> => {
+    throw new Error("updateProject function is not implemented yet");
+};

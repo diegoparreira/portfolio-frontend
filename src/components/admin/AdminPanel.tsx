@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
-import Navbar from "../navbar/Navbar";
+import { Col, Container, ListGroup, Nav, Row } from "react-bootstrap";
 import ProjectsCRUD from "../projects/ProjectsCRUD";
 
 const NAV_ITEMS = [
@@ -27,33 +26,26 @@ const AdminPanel = () => {
     };
 
     return (
-        <Container fluid className="d-flex flex-column min-vh-100 p-0">
-            <Container fluid className="admin-panel-container">
-                <Row className="admin-panel-row flex-grow-1 w-100">
-                    <Col xs={12} md={3} lg={2} className="mb-4 mb-md-0 d-flex flex-column admin-panel-sidebar">
-                        <ListGroup as="ul" variant="flush" className="flex-grow-1">
-                            {NAV_ITEMS.map(item => (
-                                <ListGroup.Item
-                                    as="button"
-                                    key={item.key}
-                                    action
-                                    active={activeSection === item.key}
-                                    onClick={() => setActiveSection(item.key)}
-                                    className="text-start fw-bold"
-                                >
-                                    {item.label}
-                                </ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </Col>
-                    <Col xs={12} md={9} lg={10} className="d-flex flex-column">
-                        <div className="admin-panel-content">
-                            {renderSection()}
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </Container>
+        <div className="admin-panel-flex">
+            <nav className="admin-panel-sidebar">
+                <Nav className="flex-column admin-panel-nav">
+                    {NAV_ITEMS.map(item => (
+                        <Nav.Link
+                            as="button"
+                            key={item.key}
+                            active={activeSection === item.key}
+                            onClick={() => setActiveSection(item.key)}
+                            className="admin-panel-nav-item"
+                        >
+                            {item.label}
+                        </Nav.Link>
+                    ))}
+                </Nav>
+            </nav>
+            <main className="admin-panel-content">
+                {renderSection()}
+            </main>
+        </div>
     );
 };
 

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProjects } from "../../api/projects";
 import type { Project } from "../../types/Project";
-import ProjectForm from "./ProjectForm";
+import Header from "../admin/commons/Header";
+import ListItem from "../admin/commons/ListItem";
+import CRUDModal from "../admin/commons/CRUDModal";
 
 const ProjectsCRUD: React.FC = () => {
     const { data: projects, isLoading, isError, refetch } = useQuery<Project[], Error>({
@@ -13,13 +15,13 @@ const ProjectsCRUD: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [editingProject, setEditingProject] = useState<Project | null>(null);
 
-    const handleEdit = (project: Project) => {
-        setEditingProject(project);
+    const handleCreate = () => {
+        setEditingProject(null);
         setShowModal(true);
     };
 
-    const handleCreate = () => {
-        setEditingProject(null);
+    const handleEdit = (project: Project) => {
+        setEditingProject(project);
         setShowModal(true);
     };
 
@@ -36,35 +38,23 @@ const ProjectsCRUD: React.FC = () => {
     };
 
     return (
-        <div>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                <h3>Projects</h3>
-                <Button variant="success" onClick={handleCreate}>New Project</Button>
-            </div>
-            {isLoading && <div>Loading...</div>}
+        <div className="d-flex flex-column">
+            {isLoading && <Spinner animation="grow" />}
             {isError && <div className="text-danger">Error loading projects.</div>}
-            <ul className="list-group">
+            <ul className="scroll-area table-list">
                 {projects && projects.map(project => (
-                    <li key={project.id} className="list-group-item d-flex justify-content-between align-items-center">
-                        <span>{project.name}</span>
-                        <Button variant="outline-primary" size="sm" onClick={() => handleEdit(project)}>
-                            Edit
-                        </Button>
-                    </li>
+                    <ListItem key={project.id} project={project} editProject={() => handleEdit(project)} />
                 ))}
             </ul>
-            <Modal show={showModal} onHide={handleClose} size="lg" centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>{editingProject ? "Edit Project" : "New Project"}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <ProjectForm
-                        initialData={editingProject || {}}
-                        onSubmit={handleSubmit}
-                        onCancel={handleClose}
-                    />
-                </Modal.Body>
-            </Modal>
+            <div className="table-btn">
+                <Button variant="primary" size="sm" className="main-button mt-3" onClick={handleCreate}>New Project</Button>
+            </div>
+            <CRUDModal
+                show={showModal}
+                handleClose={() => handleClose()}
+                editing={editingProject}
+                handleSubmit={handleSubmit}
+            />
         </div>
     );
 };
