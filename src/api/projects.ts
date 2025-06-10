@@ -29,9 +29,57 @@ export const fetchProjects = async (): Promise<Project[]> => {
 };
 
 export const createProject = async (data: Partial<Project>): Promise<Project> => {
-    throw new Error("createProject function is not implemented yet");
+    try {
+        const createProjectUrl = `${url}/create-project`;
+
+        console.log("Creating project at:", createProjectUrl);
+        console.log("Data to send:", JSON.stringify(data));
+
+        const response = await fetch(createProjectUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${anonKey}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const createdProject = await response.json();
+        return createdProject as Project;
+    } catch (error) {
+        console.error("Failed to create project:", error);
+        throw error;
+    }
 };
 
 export const updateProject = async (id: string | number, data: Partial<Project>): Promise<Project> => {
-    throw new Error("updateProject function is not implemented yet");
+    try {
+        const updateProjectUrl = `${url}/edit-project/${id}`;
+
+        console.log("Updating project at:", updateProjectUrl);
+        console.log("Data to send:", JSON.stringify(data));
+
+        const response = await fetch(updateProjectUrl, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${anonKey}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const updatedProject = await response.json();
+        return updatedProject as Project;
+    } catch (error) {
+        console.error("Failed to update project:", error);
+        throw error;
+    }
 };

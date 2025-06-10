@@ -29,16 +29,60 @@ export const fetchCertifications = async (): Promise<Certification[]> => {
 };
 
 export const createCertification = async (data: Partial<Certification>): Promise<Certification> => {
-    throw new Error("createCertification function is not implemented yet");
+    try {
+        const createCertificationUrl = `${url}/create-certification`;
+
+        console.log("Creating certification at:", createCertificationUrl);
+        console.log("Data to send:", JSON.stringify(data));
+
+        const response = await fetch(createCertificationUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${anonKey}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const createdCertification = await response.json();
+        return createdCertification as Certification;
+    } catch (error) {
+        console.error("Failed to create certification:", error);
+        throw error;
+    }
 };
 
 export const updateCertification = async (
     id: string | number,
     data: Partial<Certification>
 ): Promise<Certification> => {
-    throw new Error("updateCertification function is not implemented yet");
-};
+    try {
+        const updateCertificationUrl = `${url}/edit-certification/${id}`;
 
-export const deleteCertification = async (id: string | number): Promise<void> => {
-    throw new Error("deleteCertification function is not implemented yet");
+        console.log("Updating certification at:", updateCertificationUrl);
+        console.log("Data to send:", JSON.stringify(data));
+
+        const response = await fetch(updateCertificationUrl, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${anonKey}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const updatedCertification = await response.json();
+        return updatedCertification as Certification;
+    } catch (error) {
+        console.error("Failed to update certification:", error);
+        throw error;
+    }
 };

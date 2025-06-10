@@ -29,13 +29,57 @@ export const fetchSkills = async (): Promise<Skill[]> => {
 };
 
 export const createSkill = async (data: Partial<Skill>): Promise<Skill> => {
-    throw new Error("createSkill function is not implemented yet");
+    try {
+        const createSkillUrl = `${url}/create-skill`;
+
+        console.log("Creating skill at:", createSkillUrl);
+        console.log("Data to send:", JSON.stringify(data));
+
+        const response = await fetch(createSkillUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${anonKey}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const createdSkill = await response.json();
+        return createdSkill as Skill;
+    } catch (error) {
+        console.error("Failed to create skill:", error);
+        throw error;
+    }
 };
 
 export const updateSkill = async (id: string | number, data: Partial<Skill>): Promise<Skill> => {
-    throw new Error("updateSkill function is not implemented yet");
-};
+    try {
+        const updateSkillUrl = `${url}/edit-skill/${id}`;
 
-export const deleteSkill = async (id: string | number): Promise<void> => {
-    throw new Error("deleteSkill function is not implemented yet");
+        console.log("Updating skill at:", updateSkillUrl);
+        console.log("Data to send:", JSON.stringify(data));
+
+        const response = await fetch(updateSkillUrl, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${anonKey}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const updatedSkill = await response.json();
+        return updatedSkill as Skill;
+    } catch (error) {
+        console.error("Failed to update skill:", error);
+        throw error;
+    }
 };

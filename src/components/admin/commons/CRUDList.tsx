@@ -16,6 +16,7 @@ interface CRUDListProps<T> {
         handleSubmit: (data: Partial<T>) => void;
     }>;
     getId: (item: T) => string | number;
+    singleName: string;
 }
 
 function CRUDList<T>({
@@ -27,6 +28,7 @@ function CRUDList<T>({
     renderItem,
     ModalComponent,
     getId,
+    singleName
 }: CRUDListProps<T>) {
     const { data: items, isLoading, isError, refetch } = useQuery<T[], Error>({
         queryKey,
@@ -72,7 +74,7 @@ function CRUDList<T>({
                 ))}
             </ul>
             <Button variant="primary" size="sm" className="main-button mt-3" onClick={handleCreate}>
-                New {title.slice(0, -1)}
+                New {singleName}
             </Button>
             <ModalComponent
                 show={showModal}

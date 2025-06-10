@@ -1,11 +1,6 @@
 import { fetchProjects, createProject, updateProject } from "../../api/projects";
-import { fetchSkills, createSkill, updateSkill, deleteSkill } from "../../api/skills";
-import {
-    fetchCertifications,
-    createCertification,
-    updateCertification,
-    deleteCertification,
-} from "../../api/certifications";
+import { fetchSkills, createSkill, updateSkill } from "../../api/skills";
+import { fetchCertifications, createCertification, updateCertification } from "../../api/certifications";
 
 export const ADMIN_SECTIONS = [
     {
@@ -32,11 +27,9 @@ export const ADMIN_SECTIONS = [
             fetchItems: fetchProjects,
             createItem: createProject,
             updateItem: updateProject,
-            deleteItem: () => {
-                throw new Error("deleteProject function is not implemented yet");
-            },
             itemKey: "id",
             title: "Projects",
+            singleName: "Project",
             queryKey: ["projects"],
         },
     },
@@ -51,9 +44,9 @@ export const ADMIN_SECTIONS = [
             fetchItems: fetchSkills,
             createItem: createSkill,
             updateItem: updateSkill,
-            deleteItem: deleteSkill,
             itemKey: "id",
             title: "Skills",
+            singleName: "Skill",
             queryKey: ["skills"],
         },
     },
@@ -69,9 +62,9 @@ export const ADMIN_SECTIONS = [
             fetchItems: fetchCertifications,
             createItem: createCertification,
             updateItem: updateCertification,
-            deleteItem: deleteCertification,
             itemKey: "id",
             title: "Certifications",
+            singleName: "Certification",
             queryKey: ["certifications"],
         },
     },

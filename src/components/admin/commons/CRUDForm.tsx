@@ -4,10 +4,11 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 export interface FieldConfig<T> {
     name: keyof T;
     label: string;
-    type?: "text" | "textarea" | "number" | "email" | "password";
+    type?: "text" | "textarea" | "number" | "email" | "password" | "select";
     required?: boolean;
     as?: "input" | "textarea";
     placeholder?: string;
+    options?: string[]; // Only for select fields
 }
 
 export interface CRUDFormProps<T> {
@@ -32,7 +33,7 @@ function CRUDForm<T>({
     }, [initialData]);
 
     const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         const { name, value } = e.target;
         setForm((prev) => ({
@@ -52,30 +53,41 @@ function CRUDForm<T>({
             {fields.map((field) => (
                 <Form.Group className="mb-3" controlId={String(field.name)} key={String(field.name)}>
                     <Form.Label>{field.label}</Form.Label>
-                    <Form.Control
-                        as={field.type === "textarea" || field.as === "textarea" ? "textarea" : "input"}
-                        type={field.type || "text"}
-                        name={String(field.name)}
-                        value={form[field.name] as string || ""}
-                        onChange={handleChange}
-                        required={field.required}
-                        placeholder={field.placeholder}
-                    // rows={field.type === "textarea" || field.as === "textarea" ? 3 : undefined}
-                    />
+                    {field.type === "select" && Array.isArray((field as any).options) ? (
+                        <Form.Select
+                            name={String(field.name)}
+                            value={form[field.name] as string || ""}
+                            onChange={handleChange}
+                            required={field.required}
+                        >
+                            <option value="">Select {field.label}</option>
+                            {(field as any).options.map((opt: string) => (
+                                <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                        </Form.Select>
+                    ) : (
+                        <Form.Control
+                            as={field.type === "textarea" || field.as === "textarea" ? "textarea" : "input"}
+                            type={field.type || "text"}
+                            name={String(field.name)}
+                            value={form[field.name] as string || ""}
+                            onChange={handleChange}
+                            required={field.required}
+                            placeholder={field.placeholder}
+                        />
+                    )}
                 </Form.Group>
             ))}
-            <Row>
-                <Col>
-                    <Button type="submit" variant="primary" className="me-2">
-                        Save
+            <div className="d-flex justify-content-center align-items-center">
+                <Button type="submit" className="main-button">
+                    Save
+                </Button>
+                {onCancel && (
+                    <Button className="main-button" onClick={onCancel}>
+                        Cancel
                     </Button>
-                    {onCancel && (
-                        <Button variant="secondary" onClick={onCancel}>
-                            Cancel
-                        </Button>
-                    )}
-                </Col>
-            </Row>
+                )}
+            </div>
         </Form>
     );
 }

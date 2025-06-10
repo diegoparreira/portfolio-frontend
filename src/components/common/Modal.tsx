@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, title, size = 'xl', childr
         <RBModal show={show} onHide={onClose} centered size={mapSize(size)}>
             {title && (
                 <RBModal.Header closeButton>
-                    <RBModal.Title as="h4"><strong>{title}</strong></RBModal.Title>
+                    <RBModal.Title as="h4" className='w-100 text-center'><strong>{title}</strong></RBModal.Title>
                 </RBModal.Header>
             )}
             <RBModal.Body>

@@ -7,10 +7,10 @@ interface AdminCRUDProps {
     fetchItems: () => Promise<any[]>;
     createItem: (data: any) => Promise<any>;
     updateItem: (id: string | number, data: any) => Promise<any>;
-    deleteItem: (id: string | number) => Promise<any>;
     itemKey: string;
     title: string;
     queryKey: string[];
+    singleName?: string;
 }
 
 const AdminCRUD = ({
@@ -20,7 +20,8 @@ const AdminCRUD = ({
     updateItem,
     itemKey,
     title,
-    queryKey
+    queryKey,
+    singleName
 }: AdminCRUDProps) => {
 
     const getId = (item: any) => item[itemKey];
@@ -33,7 +34,16 @@ const AdminCRUD = ({
     );
 
     const ModalComponent = ({ show, handleClose, editingObject, handleSubmit }: any) => (
-        <Modal show={show} onClose={handleClose} title={editingObject ? `Edit ${title}` : `New ${title.slice(0, -1)}`}>
+        <Modal show={show} onClose={handleClose} title={editingObject ? `Edit ${singleName}` : `New ${singleName}`}>
+            {editingObject && (editingObject.demo_screenshot_url || editingObject.icon_link || editingObject.badge_link) && (
+                <div className="text-center mb-3">
+                    <img
+                        src={editingObject.demo_screenshot_url || editingObject.icon_link || editingObject.badge_link}
+                        alt="Preview"
+                        style={{ maxWidth: '180px', maxHeight: '180px', borderRadius: '0.5rem', objectFit: 'cover', boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}
+                    />
+                </div>
+            )}
             <CRUDForm
                 fields={fields}
                 initialData={editingObject || {}}
@@ -53,6 +63,7 @@ const AdminCRUD = ({
             renderItem={renderItem}
             ModalComponent={ModalComponent}
             getId={getId}
+            singleName={singleName || title.slice(0, -1)}
         />
     );
 };
