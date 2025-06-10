@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AdminLogin from "../components/admin/AdminLogin";
 import AdminPanel from "../components/admin/AdminPanel";
-import { Container, Row } from "react-bootstrap";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 

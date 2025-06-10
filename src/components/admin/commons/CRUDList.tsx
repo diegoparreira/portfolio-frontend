@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
-import Header from "./Header";
 
 interface CRUDListProps<T> {
     title: string;
@@ -63,7 +62,6 @@ function CRUDList<T>({
 
     return (
         <div>
-            <Header title={title} />
             {isLoading && <Spinner animation="grow" />}
             {isError && <div className="text-danger">Error loading {title.toLowerCase()}.</div>}
             <ul className="list-group scroll-area">

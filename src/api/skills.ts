@@ -27,3 +27,15 @@ export const fetchSkills = async (): Promise<Skill[]> => {
         throw error;
     }
 };
+
+export const createSkill = async (data: Partial<Skill>): Promise<Skill> => {
+    throw new Error("createSkill function is not implemented yet");
+};
+
+export const updateSkill = async (id: string | number, data: Partial<Skill>): Promise<Skill> => {
+    throw new Error("updateSkill function is not implemented yet");
+};
+
+export const deleteSkill = async (id: string | number): Promise<void> => {
+    throw new Error("deleteSkill function is not implemented yet");
+};

@@ -1,35 +1,18 @@
 import { useState } from "react";
-import { Col, Container, ListGroup, Nav, Row } from "react-bootstrap";
-import ProjectsCRUD from "../projects/ProjectsCRUD";
-
-const NAV_ITEMS = [
-    { key: "projects", label: "Projects" },
-    { key: "skills", label: "Skills" },
-    { key: "certifications", label: "Certifications" },
-];
+import { Nav } from "react-bootstrap";
+import { ADMIN_SECTIONS } from "./adminConfig";
+import AdminCRUD from "./AdminCRUD";
 
 const AdminPanel = () => {
     const [activeSection, setActiveSection] = useState("projects");
 
-    // Placeholder components for each section
-    const renderSection = () => {
-        switch (activeSection) {
-            case "projects":
-                return <ProjectsCRUD />;
-            case "skills":
-                return <div>Skills CRUD goes here</div>;
-            case "certifications":
-                return <div>Certifications CRUD goes here</div>;
-            default:
-                return null;
-        }
-    };
+    const section = ADMIN_SECTIONS.find(s => s.key === activeSection);
 
     return (
         <div className="admin-panel-flex">
             <nav className="admin-panel-sidebar">
                 <Nav className="flex-column admin-panel-nav">
-                    {NAV_ITEMS.map(item => (
+                    {ADMIN_SECTIONS.map(item => (
                         <Nav.Link
                             as="button"
                             key={item.key}
@@ -43,7 +26,7 @@ const AdminPanel = () => {
                 </Nav>
             </nav>
             <main className="admin-panel-content">
-                {renderSection()}
+                {section ? <AdminCRUD {...section.config} /> : null}
             </main>
         </div>
     );

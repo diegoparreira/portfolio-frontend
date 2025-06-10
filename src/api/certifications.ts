@@ -27,3 +27,18 @@ export const fetchCertifications = async (): Promise<Certification[]> => {
         throw error;
     }
 };
+
+export const createCertification = async (data: Partial<Certification>): Promise<Certification> => {
+    throw new Error("createCertification function is not implemented yet");
+};
+
+export const updateCertification = async (
+    id: string | number,
+    data: Partial<Certification>
+): Promise<Certification> => {
+    throw new Error("updateCertification function is not implemented yet");
+};
+
+export const deleteCertification = async (id: string | number): Promise<void> => {
+    throw new Error("deleteCertification function is not implemented yet");
+};
