@@ -47,7 +47,7 @@ const ProjectsCRUD: React.FC = () => {
                 ))}
             </ul>
             <div className="table-btn">
-                <Button variant="primary" size="sm" className="main-button mt-3" onClick={handleCreate}>New Project</Button>
+                <Button size="sm" className="main-button mt-5" onClick={handleCreate}>New Project</Button>
             </div>
             <CRUDModal
                 show={showModal}
