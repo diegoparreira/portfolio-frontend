@@ -2,6 +2,7 @@ import CRUDList from "./commons/CRUDList";
 import CRUDForm from "./commons/CRUDForm";
 import Modal from "../common/Modal";
 import FavoriteStar from "./commons/FavoriteStar";
+import ProjectMediaCarousel from '../projects/ProjectMediaCarousel';
 
 interface AdminCRUDProps {
     fields: any[];
@@ -27,7 +28,6 @@ const AdminCRUD = ({
 
     const getId = (item: any) => item[itemKey];
 
-    // Accept refetch as third argument
     const renderItem = (item: any, onEdit: () => void, refetch: () => void) => (
         <li className="list-group-item d-flex justify-content-between align-items-center" onClick={onEdit}>
             <FavoriteStar
@@ -44,10 +44,19 @@ const AdminCRUD = ({
 
     const ModalComponent = ({ show, handleClose, editingObject, handleSubmit }: any) => (
         <Modal show={show} onClose={handleClose} title={editingObject ? `Edit ${singleName}` : `New ${singleName}`}>
-            {editingObject && (editingObject.demo_screenshots_urls[0] || editingObject.icon_link || editingObject.badge_link) && (
+            {editingObject && (editingObject.demo_screenshots_urls?.length > 0 || editingObject.demo_video_url) && (
+                <div className="text-center mb-3">
+                    <ProjectMediaCarousel
+                        screenshots={editingObject.demo_screenshots_urls}
+                        videoUrl={editingObject.demo_video_url}
+                        alt={editingObject.name || editingObject.title}
+                    />
+                </div>
+            )}
+            {editingObject && (editingObject.icon_link || editingObject.badge_link) && (
                 <div className="text-center mb-3">
                     <img
-                        src={editingObject.demo_screenshots_urls[0] || editingObject.icon_link || editingObject.badge_link}
+                        src={editingObject.icon_link || editingObject.badge_link}
                         alt="Preview"
                         style={{ maxWidth: '180px', maxHeight: '180px', borderRadius: '0.5rem', objectFit: 'cover', boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}
                     />
