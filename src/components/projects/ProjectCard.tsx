@@ -14,7 +14,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, on
             <RBCard.Img variant="top" src={image} className="h-50" />
             <RBCard.Body className="p-4">
                 <RBCard.Title as="h4">{title}</RBCard.Title>
-                <RBCard.Text className="text-start">{description}</RBCard.Text>
+                <RBCard.Text className="project-card-description">
+                    {description.length > 200 ? `${description.slice(0, 200)}...` : description}
+                </RBCard.Text>
                 <Button className="more-btn" onClick={onLearnMore}>
                     ...
                 </Button>

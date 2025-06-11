@@ -323,19 +323,39 @@
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     transition: box-shadow 0.2s;
     cursor: pointer;
+    height: 100%;
+    min-height: 420px; /* Adjust as needed for your layout */
+    display: flex;
+    flex-direction: column;
 }
 
-.project-card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+.project-card > .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card .card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* ProjectModal styles */
 .project-modal {
-    max-width: 600px;
+    max-width: 1200px;
 }
 .project-modal-header {
     background: #f8f9fa;
     border-bottom: 1px solid #dee2e6;
+    justify-content: center;
+    text-align: center;
+}
+.project-modal-header .modal-title {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
 }
 .project-modal-body {
     padding: 2rem;
@@ -378,7 +398,7 @@
 }
 
 .project-image {
-    max-height: 400px;
+    max-height: 1400px;
     object-fit: cover;
 }
 
@@ -486,4 +506,21 @@
     color: #222;
     border-color: #bbb;
     transform: scale(1.08);
+}
+
+.project-card-description {
+    text-align: justify;
+    text-justify: inter-word;
+    min-height: 120px; /* Adjust as needed for your card size */
+    max-height: 120px;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.project-card .more-btn {
+    margin: 1rem auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
