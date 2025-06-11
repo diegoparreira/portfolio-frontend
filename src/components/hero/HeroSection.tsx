@@ -35,7 +35,7 @@ const HeroSection: React.FC = () => {
                 <Col xs={12} md={3} className="hero-avatar-col">
                     <Image src="/profile.jpg" alt="Avatar" roundedCircle fluid className="border border-3 border-light shadow-sm mb-4" />
                 </Col>
-                <Button className="main-button hero-btn" variant="primary" size="sm" onClick={handleOpenModal}>Saiba mais</Button>
+                <Button className="more-btn hero-btn" variant="primary" size="sm" onClick={handleOpenModal}>...</Button>
             </Row>
             <AboutModal
                 show={showAboutModal}

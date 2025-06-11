@@ -8,7 +8,7 @@ interface CRUDListProps<T> {
     fetchFn: () => Promise<T[]>;
     createFn: (data: Partial<T>) => Promise<any>;
     updateFn: (id: string | number, data: Partial<T>) => Promise<any>;
-    renderItem: (item: T, onEdit: () => void) => React.ReactNode;
+    renderItem: (item: T, onEdit: () => void, refetch: () => void) => React.ReactNode;
     ModalComponent: React.ComponentType<{
         show: boolean;
         handleClose: () => void;
@@ -69,7 +69,7 @@ function CRUDList<T>({
             <ul className="list-group scroll-area">
                 {items && items.map(item => (
                     <React.Fragment key={getId(item)}>
-                        {renderItem(item, () => handleEdit(item))}
+                        {renderItem(item, () => handleEdit(item), refetch)}
                     </React.Fragment>
                 ))}
             </ul>

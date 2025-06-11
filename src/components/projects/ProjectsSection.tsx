@@ -35,7 +35,7 @@ const ProjectsSection: React.FC = () => {
                 {displayedProjects && displayedProjects.map((project, idx) => (
                     <Col key={idx}>
                         <ProjectCard
-                            image={project.demo_screenshot_url ? project.demo_screenshot_url : 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'}
+                            image={project.demo_screenshots_url && project.demo_screenshots_url.length > 0 ? project.demo_screenshots_url[0] : 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'}
                             title={project.name}
                             description={project.description}
                             onLearnMore={() => setSelectedProject(idx)}
@@ -45,7 +45,7 @@ const ProjectsSection: React.FC = () => {
             </Row>
             {!showAll && projects.length > 3 && (
                 <div className="text-center mt-4">
-                    <Button className="rounded-btn" onClick={() => setShowAll(true)}>
+                    <Button className="more-btn" onClick={() => setShowAll(true)}>
                         ...
                     </Button>
                 </div>

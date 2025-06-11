@@ -20,7 +20,7 @@ export const ADMIN_SECTIONS = [
                 { name: "start_date", type: "date", label: "Start Date" },
                 { name: "end_date", type: "date", label: "End Date" },
                 { name: "demo_video_url", type: "text", label: "Demo Video URL" },
-                { name: "demo_screenshot_url", type: "text", label: "Demo Screenshot URL" },
+                { name: "demo_screenshots_urls", type: "textarea", label: "Demo Screenshot URLs (comma separated)" },
                 { name: "demo_url", type: "text", label: "Demo URL" },
                 { name: "repository_url", type: "text", label: "Repository URL" },
             ],

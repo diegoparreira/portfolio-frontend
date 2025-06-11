@@ -18,7 +18,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ show, onClose, project }) =
             <RBModal.Body className="project-modal-body">
                 <Row className="flex-column">
                     <Col className="mb-4 pt-0">
-                        <img className="img-fluid shadow-sm rounded-3 project-image" src={project.demo_screenshot_url || 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'} alt={project.name} />
+                        <img className="img-fluid shadow-sm rounded-3 project-image" src={project.demo_screenshots_url && project.demo_screenshots_url.length > 0 ? project.demo_screenshots_url[0] : 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'} alt={project.name} />
                         <div className="d-flex gap-2 mt-4">
                             <Button as="a" href="#" target="_blank" rel="noopener noreferrer" variant="outline-primary" className="flex-grow-1">Ver Demo&nbsp;</Button>
                             <Button as="a" href="#" target="_blank" rel="noopener noreferrer" variant="outline-primary" className="flex-grow-1">Código Fonte&nbsp;</Button>

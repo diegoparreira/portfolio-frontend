@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 export interface FieldConfig<T> {
     name: keyof T;
@@ -36,10 +36,18 @@ function CRUDForm<T>({
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         const { name, value } = e.target;
-        setForm((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
+        // Special handling for demo_screenshots field (comma separated to array)
+        if (name === 'demo_screenshots_url') {
+            setForm((prev) => ({
+                ...prev,
+                [name]: value.split(',').map((url) => url.trim()).filter(Boolean),
+            }));
+        } else {
+            setForm((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {

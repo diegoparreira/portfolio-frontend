@@ -15,8 +15,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, on
             <RBCard.Body className="p-4">
                 <RBCard.Title as="h4">{title}</RBCard.Title>
                 <RBCard.Text className="text-start">{description}</RBCard.Text>
-                <Button className="main-button" onClick={onLearnMore}>
-                    Saiba mais
+                <Button className="more-btn" onClick={onLearnMore}>
+                    ...
                 </Button>
             </RBCard.Body>
         </RBCard>
