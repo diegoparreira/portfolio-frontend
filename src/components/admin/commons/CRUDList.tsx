@@ -73,9 +73,11 @@ function CRUDList<T>({
                     </React.Fragment>
                 ))}
             </ul>
-            <Button variant="primary" size="sm" className="main-button mt-3" onClick={handleCreate}>
-                New {singleName}
-            </Button>
+            <div className="d-flex justify-content-center">
+                <Button variant="primary" size="sm" className="main-button mt-3" onClick={handleCreate}>
+                    New {singleName}
+                </Button>
+            </div>
             <ModalComponent
                 show={showModal}
                 handleClose={handleClose}

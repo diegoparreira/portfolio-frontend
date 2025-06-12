@@ -19,7 +19,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ show, onClose }) => {
                     </Col>
                     <Col md={12} lg={4} xs={12} className="d-flex flex-column align-items-center my-auto">
                         <Image src="/profile.jpg" alt="Avatar" roundedCircle fluid className="border border-3 border-light shadow-sm mb-4 modal-avatar" />
-                        <Col className="d-flex flex-column gap-2 w-100 px-2">
+                        <Col className="d-flex flex-column justify-content-center align-items-center gap-2 w-100 px-2">
                             <Button variant="outline-primary" size="sm" className="main-button" href="#">Currículo</Button>
                             <Button variant="outline-primary" size="sm" className="main-button" href="/gallup34.pdf" target="_blank" rel="noopener noreferrer">CliftonStrenghts</Button>
                             <Button variant="outline-primary" size="sm" className="main-button" href="https://www.linkedin.com/in/diegoparreira-/" target="_blank" rel="noopener noreferrer">LinkedIn</Button>

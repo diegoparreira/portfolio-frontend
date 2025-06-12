@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
+import ScreenshotUrlsInput from './ScreenshotUrlsInput';
 
 export interface FieldConfig<T> {
     name: keyof T;
@@ -36,18 +37,19 @@ function CRUDForm<T>({
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         const { name, value } = e.target;
-        // Special handling for demo_screenshots field (comma separated to array)
         if (name === 'demo_screenshots_url') {
-            setForm((prev) => ({
-                ...prev,
-                [name]: value.split(',').map((url) => url.trim()).filter(Boolean),
-            }));
-        } else {
-            setForm((prev) => ({
-                ...prev,
-                [name]: value,
-            }));
+            return;
         }
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    // @ts-ignore: dynamic field for Project
+    const getScreenshotUrls = () => Array.isArray(form['demo_screenshots_urls']) ? form['demo_screenshots_urls'] : [];
+    const setScreenshotUrls = (urls: string[]) => {
+        setForm((prev) => ({ ...prev, demo_screenshots_urls: urls }));
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -56,12 +58,17 @@ function CRUDForm<T>({
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form className="px-5" onSubmit={handleSubmit}>
             {error && <Alert variant="danger">{error}</Alert>}
             {fields.map((field) => (
                 <Form.Group className="mb-3" controlId={String(field.name)} key={String(field.name)}>
                     <Form.Label>{field.label}</Form.Label>
-                    {field.type === "select" && Array.isArray((field as any).options) ? (
+                    {field.name === 'demo_screenshots_urls' ? (
+                        <ScreenshotUrlsInput
+                            value={getScreenshotUrls()}
+                            onChange={setScreenshotUrls}
+                        />
+                    ) : field.type === "select" && Array.isArray((field as any).options) ? (
                         <Form.Select
                             name={String(field.name)}
                             value={form[field.name] as string || ""}
@@ -75,6 +82,7 @@ function CRUDForm<T>({
                         </Form.Select>
                     ) : (
                         <Form.Control
+                            className="minimal-input"
                             as={field.type === "textarea" || field.as === "textarea" ? "textarea" : "input"}
                             type={field.type || "text"}
                             name={String(field.name)}
@@ -86,15 +94,13 @@ function CRUDForm<T>({
                     )}
                 </Form.Group>
             ))}
-            <div className="d-flex justify-content-center align-items-center">
+            <div className="d-flex justify-content-center gap-2 align-items-center">
                 <Button type="submit" className="main-button">
                     Save
                 </Button>
-                {onCancel && (
-                    <Button className="main-button" onClick={onCancel}>
-                        Cancel
-                    </Button>
-                )}
+                <Button className="main-button" onClick={onCancel}>
+                    Cancel
+                </Button>
             </div>
         </Form>
     );

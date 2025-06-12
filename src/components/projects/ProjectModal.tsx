@@ -24,9 +24,9 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ show, onClose, project }) =
                             videoUrl={project.demo_video_url}
                             alt={project.name}
                         />
-                        <div className="d-flex gap-2 mt-4">
-                            <Button as="a" href="#" target="_blank" rel="noopener noreferrer" variant="outline-primary" className="flex-grow-1">Ver Demo&nbsp;</Button>
-                            <Button as="a" href="#" target="_blank" rel="noopener noreferrer" variant="outline-primary" className="flex-grow-1">Código Fonte&nbsp;</Button>
+                        <div className="d-flex justify-content-center gap-2 mt-4">
+                            <Button as="a" href="#" target="_blank" rel="noopener noreferrer" variant="outline-primary" className="main-button">Ver Demo&nbsp;</Button>
+                            <Button as="a" href="#" target="_blank" rel="noopener noreferrer" variant="outline-primary" className="main-button">Código Fonte&nbsp;</Button>
                         </div>
                     </Col>
                     <Col>
