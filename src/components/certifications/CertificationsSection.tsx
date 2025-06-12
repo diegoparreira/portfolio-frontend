@@ -5,7 +5,7 @@ import { fetchCertifications } from '../../api/certifications';
 import { useQuery } from '@tanstack/react-query';
 
 const CertificationsSection: React.FC = () => {
-    const { data: certifications, isLoading, isError } = useQuery({
+    const { data: certifications, isLoading, isError, error } = useQuery({
         queryKey: ['certifications'],
         queryFn: fetchCertifications,
     });
@@ -15,7 +15,7 @@ const CertificationsSection: React.FC = () => {
     }
 
     if (isError || !certifications) {
-        return <Alert variant="danger" className="text-center py-5">Erro ao carregar certificações.</Alert>;
+        return <Alert variant="danger" className="text-center py-5">Erro ao carregar certificações. ${error?.message}</Alert>;
     }
 
 

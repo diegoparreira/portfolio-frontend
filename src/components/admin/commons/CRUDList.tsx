@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import { Alert, Button, Spinner } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
 
 interface CRUDListProps<T> {
@@ -30,7 +30,7 @@ function CRUDList<T>({
     getId,
     singleName
 }: CRUDListProps<T>) {
-    const { data: items, isLoading, isError, refetch } = useQuery<T[], Error>({
+    const { data: items, isLoading, isError, refetch, error } = useQuery<T[], Error>({
         queryKey,
         queryFn: fetchFn,
     });
@@ -65,7 +65,7 @@ function CRUDList<T>({
     return (
         <div>
             {isLoading && <Spinner animation="grow" />}
-            {isError && <div className="text-danger">Error loading {title.toLowerCase()}.</div>}
+            {isError && <Alert variant="danger" className="text-center py-5">Error loading {title.toLowerCase()}. {error?.message}</Alert>}
             <ul className="list-group scroll-area">
                 {items && items.map(item => (
                     <React.Fragment key={getId(item)}>

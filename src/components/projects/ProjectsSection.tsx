@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 const ProjectsSection: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<number | null>(null);
     const [showAll, setShowAll] = useState<boolean>(false);
-    const { data: projects, isLoading, isError } = useQuery<Project[], Error>({
+    const { data: projects, isLoading, isError, error } = useQuery<Project[], Error>({
         queryKey: ['projects'],
         queryFn: fetchProjects,
     });
@@ -21,7 +21,7 @@ const ProjectsSection: React.FC = () => {
     }
 
     if (isError || !projects) {
-        return <Alert variant="danger" className="text-center py-5">Erro ao carregar projetos.</Alert>;
+        return <Alert variant="danger" className="text-center py-5">Erro ao carregar projetos. {error?.message}</Alert>;
     }
 
     return (

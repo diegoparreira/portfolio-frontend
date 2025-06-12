@@ -6,9 +6,7 @@ const Navbar: React.FC = () => {
     return (
         <RBNavbar bg="white" expand="md" className="py-3 px-5 shadow-sm align-items-center">
             <Container fluid className="d-flex justify-content-center">
-                <RBNavbar.Brand href="/">
-                    <Logo />
-                </RBNavbar.Brand>
+                <Logo />
             </Container>
         </RBNavbar>
     );

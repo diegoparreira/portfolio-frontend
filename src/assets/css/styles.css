@@ -14,27 +14,12 @@
     --color-text-light: #fff;
     --color-text-muted: #6c757d;
     --color-text-dark: #222;
+    --color-grey-border: #565e64;
 }
 
 body {
     background: var(--color-bg);
     color: var(--color-text);
-}
-
-.main-button,
-.main-button:focus,
-.main-button:active,
-.main-button:focus-visible {
-    background: var(--color-main) !important;
-    color: var(--color-text-light) !important;
-    border-color: var(--color-border) !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
-.main-button:hover {
-    background: var(--color-main-dark) !important;
-    color: var(--color-text-light) !important;
-    border-color: var(--color-border) !important;
 }
 
 /* Example refactor for .minimal-input */
@@ -353,7 +338,7 @@ body {
 
 .main-button {
     background: #888888;
-    color: #fff;
+    color: var(--color-text-light);
     padding: 0.75rem 1.5rem;
     border-color: #dee2e6;
     border-radius: 0.5rem;
@@ -682,7 +667,7 @@ body {
 }
 .minimal-input:focus {
     border-color: #888888;
-    background: #fff;
+    background: var(--color-text-light);
     outline: none;
     color: var(--color-text-dark);
 }
@@ -726,36 +711,35 @@ body {
     display: block;
 }
 
-/* Palette-consistent button states (override Bootstrap) */
 .main-button,
 .main-button:focus,
 .main-button:active,
 .main-button:focus-visible {
-    background: #888888 !important;
-    color: #fff !important;
-    border-color: #dee2e6 !important;
+    background: var(--color-main) !important;
+    color: var(--color-text-light) !important;
+    border-color: var(--color-border) !important;
     box-shadow: none !important;
     outline: none !important;
 }
 .main-button:hover {
-    background: #555555 !important;
-    color: #fff !important;
-    border-color: #dee2e6 !important;
+    background: var(--color-main-dark) !important;
+    color: var(--color-text-light) !important;
+    border-color: var(--color-border) !important;
 }
 
 .btn-danger,
 .btn-danger:focus,
 .btn-danger:active,
 .btn-danger:focus-visible {
-    background: #d9534f !important;
-    color: #fff !important;
+    background: var(--color-danger) !important;
+    color: var(--color-text-light) !important;
     border-color: #d43f3a !important;
     box-shadow: none !important;
     outline: none !important;
 }
 .btn-danger:hover {
-    background: #b52a25 !important;
-    color: #fff !important;
+    background: var(--color-danger-dark) !important;
+    color: var(--color-text-light) !important;
     border-color: #a52823 !important;
 }
 
@@ -763,15 +747,15 @@ body {
 .btn-secondary:focus,
 .btn-secondary:active,
 .btn-secondary:focus-visible {
-    background: #6c757d !important;
-    color: #fff !important;
-    border-color: #565e64 !important;
+    background: var(--color-text-muted) !important;
+    color: var(--color-text-light) !important;
+    border-color: var(--color-grey-border) !important;
     box-shadow: none !important;
     outline: none !important;
 }
 .btn-secondary:hover {
-    background: #565e64 !important;
-    color: #fff !important;
+    background: var(--color-grey-border) !important;
+    color: var(--color-text-light) !important;
     border-color: #444950 !important;
 }
 
@@ -779,7 +763,7 @@ body {
 .more-btn:focus,
 .more-btn:active,
 .more-btn:focus-visible {
-    background: #fff !important;
+    background: var(--color-text-light) !important;
     color: #555 !important;
     border-color: #ddd !important;
     box-shadow: none !important;

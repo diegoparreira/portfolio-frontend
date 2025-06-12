@@ -6,7 +6,7 @@ import { fetchSkills } from '../../api/skills';
 import type { Skill } from '../../types/Skill';
 
 const SkillsSection: React.FC = () => {
-    const { data: skills, isLoading, isError } = useQuery<Skill[], Error>({
+    const { data: skills, isLoading, isError, error } = useQuery<Skill[], Error>({
         queryKey: ['skills'],
         queryFn: fetchSkills,
     });
@@ -16,7 +16,7 @@ const SkillsSection: React.FC = () => {
     }
 
     if (isError || !skills) {
-        return <Alert variant="danger" className="text-center py-5">Erro ao carregar skills.</Alert>;
+        return <Alert variant="danger" className="text-center py-5">Erro ao carregar skills. ${error?.message}</Alert>;
     }
 
     return (

@@ -1,6 +1,6 @@
 import CRUDList from "./commons/CRUDList";
 import CRUDForm from "./commons/CRUDForm";
-import Modal from "../common/Modal";
+import Modal from "../commons/Modal";
 import FavoriteStar from "./commons/FavoriteStar";
 import ProjectMediaCarousel from '../projects/ProjectMediaCarousel';
 
