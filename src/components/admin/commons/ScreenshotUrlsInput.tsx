@@ -49,19 +49,21 @@ const ScreenshotUrlsInput: React.FC<ScreenshotUrlsInputProps> = ({ value, onChan
             ) : (
                 <div className="text-muted mb-2">No screenshot URLs. Add one below.</div>
             )}
-            <Button
-                variant="light"
-                size="sm"
-                className="modern-add-btn d-flex align-items-center justify-content-center"
-                onClick={handleAdd}
-                style={{ width: 36, height: 36, borderRadius: '50%', padding: 0 }}
-                aria-label="Add screenshot URL"
-            >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="10" cy="10" r="9" stroke="#888" strokeWidth="2" fill="#f8f9fa" />
-                    <path d="M10 6V14M6 10H14" stroke="#888" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-            </Button>
+            <div className="d-flex justify-content-center">
+                <Button
+                    variant="light"
+                    size="sm"
+                    className="modern-add-btn d-flex align-items-center justify-content-center"
+                    onClick={handleAdd}
+                    style={{ width: 36, height: 36, borderRadius: '50%', padding: 0 }}
+                    aria-label="Add screenshot URL"
+                >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="10" r="9" stroke="#888" strokeWidth="2" fill="#f8f9fa" />
+                        <path d="M10 6V14M6 10H14" stroke="#888" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                </Button>
+            </div>
         </div>
     );
 };
