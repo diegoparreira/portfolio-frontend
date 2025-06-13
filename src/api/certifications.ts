@@ -1,15 +1,15 @@
-import type { Project } from "../types/Project";
+import type { Certification } from "../types/Certification";
 
 const url = import.meta.env.VITE_SUPABASE_FUNCTIONS_URL;
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const fetchProjects = async (): Promise<Project[]> => {
+export const fetchCertifications = async (): Promise<Certification[]> => {
     try {
-        const getProjectsUrl = `${url}/list-projects`;
+        const getCertificationsUrl = `${url}/list-certifications`;
 
-        console.log("Fetching projects from:", getProjectsUrl);
+        console.log("Fetching certifications from:", getCertificationsUrl);
 
-        const response = await fetch(getProjectsUrl, {
+        const response = await fetch(getCertificationsUrl, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${anonKey}`,
@@ -21,21 +21,21 @@ export const fetchProjects = async (): Promise<Project[]> => {
         console.log("Response status:", response.status);
         console.log("Response:", JSON.stringify(response));
         const data = await response.json();
-        return data as Project[];
+        return data as Certification[];
     } catch (error) {
-        console.error("Failed to fetch projects:", error);
+        console.error("Failed to fetch certifications:", error);
         throw error;
     }
 };
 
-export const createProject = async (data: Partial<Project>): Promise<Project> => {
+export const createCertification = async (data: Partial<Certification>): Promise<Certification> => {
     try {
-        const createProjectUrl = `${url}/create-project`;
+        const createCertificationUrl = `${url}/create-certification`;
 
-        console.log("Creating project at:", createProjectUrl);
+        console.log("Creating certification at:", createCertificationUrl);
         console.log("Data to send:", JSON.stringify(data));
 
-        const response = await fetch(createProjectUrl, {
+        const response = await fetch(createCertificationUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -48,22 +48,25 @@ export const createProject = async (data: Partial<Project>): Promise<Project> =>
             throw new Error("Network response was not ok");
         }
 
-        const createdProject = await response.json();
-        return createdProject as Project;
+        const createdCertification = await response.json();
+        return createdCertification as Certification;
     } catch (error) {
-        console.error("Failed to create project:", error);
+        console.error("Failed to create certification:", error);
         throw error;
     }
 };
 
-export const updateProject = async (id: string | number, data: Partial<Project>): Promise<Project> => {
+export const updateCertification = async (
+    id: string | number,
+    data: Partial<Certification>
+): Promise<Certification> => {
     try {
-        const updateProjectUrl = `${url}/edit-project/${id}`;
+        const updateCertificationUrl = `${url}/edit-certification/${id}`;
 
-        console.log("Updating project at:", updateProjectUrl);
+        console.log("Updating certification at:", updateCertificationUrl);
         console.log("Data to send:", JSON.stringify(data));
 
-        const response = await fetch(updateProjectUrl, {
+        const response = await fetch(updateCertificationUrl, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -76,10 +79,10 @@ export const updateProject = async (id: string | number, data: Partial<Project>)
             throw new Error("Network response was not ok");
         }
 
-        const updatedProject = await response.json();
-        return updatedProject as Project;
+        const updatedCertification = await response.json();
+        return updatedCertification as Certification;
     } catch (error) {
-        console.error("Failed to update project:", error);
+        console.error("Failed to update certification:", error);
         throw error;
     }
 };

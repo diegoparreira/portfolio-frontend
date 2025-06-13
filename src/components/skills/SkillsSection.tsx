@@ -1,37 +1,40 @@
 import React from 'react';
+import { Row, Col, Container, Spinner, Alert } from 'react-bootstrap';
 import SkillItem from './SkillItem';
-
-const skills = [
-    { icon: 'devicon-javascript-plain', label: 'JavaScript' },
-    { icon: 'devicon-typescript-plain', label: 'TypeScript' },
-    { icon: 'devicon-java-plain', label: 'Java' },
-    { icon: 'devicon-jenkins-line', label: 'Jenkins' },
-    { icon: 'devicon-amazonwebservices-plain-wordmark', label: 'AWS' },
-    { icon: 'devicon-azure-plain', label: 'Azure' },
-    { icon: 'devicon-html5-plain', label: 'HTML5' },
-    { icon: 'devicon-css3-plain', label: 'CSS3' },
-    { icon: 'devicon-bootstrap-plain', label: 'Bootstrap' },
-    { icon: 'devicon-react-original', label: 'React' },
-    { icon: 'devicon-git-plain', label: 'Git' },
-    { icon: 'devicon-bitbucket-original', label: 'Bitbucket' },
-    { icon: 'devicon-github-original', label: 'Github' },
-];
+import { useQuery } from '@tanstack/react-query';
+import { fetchSkills } from '../../api/skills';
+import type { Skill } from '../../types/Skill';
 
 const SkillsSection: React.FC = () => {
+    const { data: skills, isLoading, isError, error } = useQuery<Skill[], Error>({
+        queryKey: ['skills'],
+        queryFn: fetchSkills,
+    });
+
+    if (isLoading) {
+        return <div className="text-center py-5"><Spinner animation="border" /> Carregando skills...</div>;
+    }
+
+    if (isError || !skills) {
+        return <Alert variant="danger" className="text-center py-5">Erro ao carregar skills. ${error?.message}</Alert>;
+    }
+
     return (
         <section className="skills-section py-4 py-xl-5">
-            <div className="container">
-                <div className="row mb-5">
-                    <div className="col-md-8 col-xl-6 text-center mx-auto">
+            <Container>
+                <Row className="mb-5">
+                    <Col md={8} xl={6} className="text-center mx-auto">
                         <h2 className="section-title">Skills</h2>
-                    </div>
-                </div>
-                <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 text-center g-4 row-cols-xl-6">
+                    </Col>
+                </Row>
+                <Row xs={2} sm={3} md={4} xl={6} className="text-center g-4">
                     {skills.map((skill, idx) => (
-                        <SkillItem key={idx} icon={skill.icon} label={skill.label} />
+                        <Col key={idx}>
+                            <SkillItem icon={skill.icon_link ?? ''} label={skill.name} />
+                        </Col>
                     ))}
-                </div>
-            </div>
+                </Row>
+            </Container>
         </section>
     );
 };

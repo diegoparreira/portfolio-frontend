@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
 import ProjectCard from './ProjectCard';
 import ProjectModal from '../../components/projects/ProjectModal';
 import { fetchProjects } from '../../api/projects';
@@ -7,38 +8,48 @@ import { useQuery } from '@tanstack/react-query';
 
 const ProjectsSection: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<number | null>(null);
-    const { data: projects, isLoading, isError } = useQuery<Project[], Error>({
+    const [showAll, setShowAll] = useState<boolean>(false);
+    const { data: projects, isLoading, isError, error } = useQuery<Project[], Error>({
         queryKey: ['projects'],
         queryFn: fetchProjects,
     });
 
+    const displayedProjects: Project[] = showAll ? (projects ?? []) : (projects?.slice(0, 3) ?? []);
+
     if (isLoading) {
-        return <div className="text-center py-5">Carregando projetos...</div>
+        return <div className="text-center py-5"><Spinner animation="border" /> Carregando projetos...</div>;
     }
 
     if (isError || !projects) {
-        return <div className="text-center py-5 text-danger">Erro ao carregar projetos.</div>
+        return <Alert variant="danger" className="text-center py-5">Erro ao carregar projetos. {error?.message}</Alert>;
     }
 
     return (
-        <div className="container py-4 py-xl-5">
-            <div className="row mb-5">
-                <div className="col-md-8 col-xl-6 text-center mx-auto">
+        <Container className="py-4 py-xl-5">
+            <Row className="mb-5">
+                <Col md={8} xl={6} className="text-center mx-auto">
                     <h2 className="section-title">Projetos</h2>
-                </div>
-            </div>
-            <div className="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                {projects.map((project, idx) => (
-                    <div className="col" key={idx}>
+                </Col>
+            </Row>
+            <Row className="gy-4" xs={1} md={2} xl={3}>
+                {displayedProjects && displayedProjects.map((project, idx) => (
+                    <Col key={idx}>
                         <ProjectCard
-                            image={project.demo_screenshot_url ? project.demo_screenshot_url : 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'}
+                            image={project.demo_screenshots_urls && project.demo_screenshots_urls.length > 0 ? project.demo_screenshots_urls[0] : 'https://cdn.bootstrapstudio.io/placeholders/1400x800.png'}
                             title={project.name}
                             description={project.description}
                             onLearnMore={() => setSelectedProject(idx)}
                         />
-                    </div>
+                    </Col>
                 ))}
-            </div>
+            </Row>
+            {!showAll && projects.length > 3 && (
+                <div className="text-center mt-4">
+                    <Button className="more-btn" onClick={() => setShowAll(true)}>
+                        ...
+                    </Button>
+                </div>
+            )}
             {selectedProject !== null && (
                 <ProjectModal
                     show={selectedProject !== null}
@@ -46,7 +57,7 @@ const ProjectsSection: React.FC = () => {
                     project={projects[selectedProject]}
                 />
             )}
-        </div>
+        </Container>
     );
 };
 
