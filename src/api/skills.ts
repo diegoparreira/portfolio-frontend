@@ -1,15 +1,15 @@
-import type { Project } from "../types/Project";
+import type { Skill } from "../types/Skill";
 
 const url = import.meta.env.VITE_SUPABASE_FUNCTIONS_URL;
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const fetchProjects = async (): Promise<Project[]> => {
+export const fetchSkills = async (): Promise<Skill[]> => {
     try {
-        const getProjectsUrl = `${url}/list-projects`;
+        const getSkillsUrl = `${url}/list-skills`;
 
-        console.log("Fetching projects from:", getProjectsUrl);
+        console.log("Fetching skills from:", getSkillsUrl);
 
-        const response = await fetch(getProjectsUrl, {
+        const response = await fetch(getSkillsUrl, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${anonKey}`,
@@ -21,21 +21,21 @@ export const fetchProjects = async (): Promise<Project[]> => {
         console.log("Response status:", response.status);
         console.log("Response:", JSON.stringify(response));
         const data = await response.json();
-        return data as Project[];
+        return data as Skill[];
     } catch (error) {
-        console.error("Failed to fetch projects:", error);
+        console.error("Failed to fetch skills:", error);
         throw error;
     }
 };
 
-export const createProject = async (data: Partial<Project>): Promise<Project> => {
+export const createSkill = async (data: Partial<Skill>): Promise<Skill> => {
     try {
-        const createProjectUrl = `${url}/create-project`;
+        const createSkillUrl = `${url}/create-skill`;
 
-        console.log("Creating project at:", createProjectUrl);
+        console.log("Creating skill at:", createSkillUrl);
         console.log("Data to send:", JSON.stringify(data));
 
-        const response = await fetch(createProjectUrl, {
+        const response = await fetch(createSkillUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -48,22 +48,22 @@ export const createProject = async (data: Partial<Project>): Promise<Project> =>
             throw new Error("Network response was not ok");
         }
 
-        const createdProject = await response.json();
-        return createdProject as Project;
+        const createdSkill = await response.json();
+        return createdSkill as Skill;
     } catch (error) {
-        console.error("Failed to create project:", error);
+        console.error("Failed to create skill:", error);
         throw error;
     }
 };
 
-export const updateProject = async (id: string | number, data: Partial<Project>): Promise<Project> => {
+export const updateSkill = async (id: string | number, data: Partial<Skill>): Promise<Skill> => {
     try {
-        const updateProjectUrl = `${url}/edit-project/${id}`;
+        const updateSkillUrl = `${url}/edit-skill/${id}`;
 
-        console.log("Updating project at:", updateProjectUrl);
+        console.log("Updating skill at:", updateSkillUrl);
         console.log("Data to send:", JSON.stringify(data));
 
-        const response = await fetch(updateProjectUrl, {
+        const response = await fetch(updateSkillUrl, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -76,10 +76,10 @@ export const updateProject = async (id: string | number, data: Partial<Project>)
             throw new Error("Network response was not ok");
         }
 
-        const updatedProject = await response.json();
-        return updatedProject as Project;
+        const updatedSkill = await response.json();
+        return updatedSkill as Skill;
     } catch (error) {
-        console.error("Failed to update project:", error);
+        console.error("Failed to update skill:", error);
         throw error;
     }
 };

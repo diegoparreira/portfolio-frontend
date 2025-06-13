@@ -1,4 +1,5 @@
 import React from 'react';
+import { Nav } from 'react-bootstrap';
 
 interface NavItemProps {
     href: string;
@@ -7,11 +8,11 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ href, active = false, children }) => (
-    <li className="nav-item">
-        <a className={`nav-link${active ? ' active' : ''}`} href={href}>
+    <Nav.Item>
+        <Nav.Link href={href} active={active}>
             {children}
-        </a>
-    </li>
+        </Nav.Link>
+    </Nav.Item>
 );
 
 export default NavItem;

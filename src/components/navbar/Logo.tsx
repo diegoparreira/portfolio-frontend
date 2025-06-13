@@ -1,9 +1,10 @@
 import React from 'react';
+import { NavbarBrand } from 'react-bootstrap';
 
 const Logo: React.FC = () => (
-    <a className="navbar-brand" href="#" style={{ fontFamily: 'Source Code Pro, monospace' }}>
+    <NavbarBrand href="/" style={{ fontFamily: 'Source Code Pro, monospace' }}>
         <strong>Diego Parreira</strong>&nbsp;💻
-    </a>
+    </NavbarBrand>
 );
 
 export default Logo;
