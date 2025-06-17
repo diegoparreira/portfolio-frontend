@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import { PlusCircle, XCircle } from "react-bootstrap-icons";
 
 interface ScreenshotUrlsInputProps {
     value: string[];
@@ -39,10 +40,7 @@ const ScreenshotUrlsInput: React.FC<ScreenshotUrlsInputProps> = ({ value, onChan
                             tabIndex={-1}
                             aria-label={`Remove screenshot URL #${idx + 1}`}
                         >
-                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="10" cy="10" r="9" stroke="#888" strokeWidth="2" fill="#f8f9fa" />
-                                <path d="M7 7L13 13M13 7L7 13" stroke="#888" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
+                            <XCircle size={18} color="#888" />
                         </Button>
                     </div>
                 ))
@@ -58,10 +56,7 @@ const ScreenshotUrlsInput: React.FC<ScreenshotUrlsInputProps> = ({ value, onChan
                     style={{ width: 36, height: 36, borderRadius: '50%', padding: 0 }}
                     aria-label="Add screenshot URL"
                 >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="10" cy="10" r="9" stroke="#888" strokeWidth="2" fill="#f8f9fa" />
-                        <path d="M10 6V14M6 10H14" stroke="#888" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
+                    <PlusCircle size={20} color="#888" />
                 </Button>
             </div>
         </div>
