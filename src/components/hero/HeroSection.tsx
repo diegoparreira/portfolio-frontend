@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
 
 
     return (
-        <div className="hero-section">
+        <Container className="hero-section">
             <Row className="hero-content">
                 <Col xs={12} md={9} className="hero-text-col">
                     <h1 className="display-5 fw-bold">{typedText}</h1>
@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
                 show={showAboutModal}
                 onClose={() => setShowAboutModal(false)}
             />
-        </div>
+        </Container>
     );
 };
 

@@ -10,8 +10,8 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, onLearnMore }) => (
     <div className="project-card shadow-sm rounded p-3 mb-4 h-100" onClick={onLearnMore} role="button" tabIndex={0}>
-        <RBCard>
-            <RBCard.Img variant="top" src={image} className="h-50" />
+        <RBCard className="justify-content-center align-items-center h-100">
+            <RBCard.Img variant="top" src={image} />
             <RBCard.Body className="p-4">
                 <RBCard.Title as="h4">{title}</RBCard.Title>
                 <RBCard.Text className="project-card-description">

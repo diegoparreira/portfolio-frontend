@@ -27,7 +27,7 @@ const CertificationsSection: React.FC = () => {
                         <h2 className="section-title">Certificações</h2>
                     </Col>
                 </Row>
-                <Row xs={2} sm={3} md={4} xl={6} className="text-center g-4">
+                <Row xs={2} sm={3} md={4} xl={6} className="justify-content-center align-itens-center text-center g-4">
                     {certifications?.map((cert, idx) => (
                         <Col key={idx}>
                             <CertificationItem certification={cert} />
