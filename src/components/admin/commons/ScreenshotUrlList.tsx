@@ -1,14 +1,13 @@
-import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { PlusCircle, XCircle } from "react-bootstrap-icons";
-import ScreenshotFileUploader from "./ScreenshotFileUploader";
 
-interface ScreenshotUrlsInputProps {
+interface ScreenshotUrlListProps {
     value: string[];
     onChange: (urls: string[]) => void;
 }
 
-const ScreenshotUrlsInput: React.FC<ScreenshotUrlsInputProps> = ({ value, onChange }) => {
+const ScreenshotUrlList: React.FC<ScreenshotUrlListProps> = ({ value, onChange }) => {
+
     const handleUrlChange = (idx: number, url: string) => {
         const urls = [...value];
         urls[idx] = url;
@@ -22,12 +21,9 @@ const ScreenshotUrlsInput: React.FC<ScreenshotUrlsInputProps> = ({ value, onChan
         urls.splice(idx, 1);
         onChange(urls);
     };
+
     return (
-        <div className="d-flex flex-column justify-content-center">
-            <ScreenshotFileUploader
-                value={value}
-                onChange={onChange}
-            />
+        <>
             {value.length > 0 ? (
                 value.map((url, idx) => (
                     <div className="d-flex mb-2 align-items-center" key={idx}>
@@ -52,20 +48,19 @@ const ScreenshotUrlsInput: React.FC<ScreenshotUrlsInputProps> = ({ value, onChan
             ) : (
                 <div className="text-muted mb-2">No screenshot URLs. Add one below.</div>
             )}
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mb-2">
                 <Button
                     variant="light"
                     size="sm"
                     className="modern-add-btn d-flex align-items-center justify-content-center"
                     onClick={handleAdd}
-                    style={{ width: 36, height: 36, borderRadius: '50%', padding: 0 }}
                     aria-label="Add screenshot URL"
                 >
                     <PlusCircle size={20} color="#888" />
                 </Button>
             </div>
-        </div>
+        </>
     );
 };
 
-export default ScreenshotUrlsInput;
+export default ScreenshotUrlList;
