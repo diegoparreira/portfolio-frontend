@@ -1,19 +1,25 @@
-import { Button } from "react-bootstrap";
-import type { Project } from "../../../types/Project";
+import React from "react";
 
 interface ListItemProps {
-    project: Project;
-    editProject?: () => void;
+    children: React.ReactNode;
+    onClick?: () => void;
+    className?: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ project, editProject }) => {
-
+const ListItem: React.FC<ListItemProps> = ({
+    children,
+    onClick,
+    className = ""
+}) => {
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center" onClick={editProject}>
-            <span>{project.id}</span>
-            <span>{project.name}</span>
+        <li
+            className={`list-group-item d-flex justify-content-between align-items-center ${className}`}
+            onClick={onClick}
+            style={{ cursor: onClick ? 'pointer' : 'default' }}
+        >
+            {children}
         </li>
-    )
-}
+    );
+};
 
 export default ListItem;

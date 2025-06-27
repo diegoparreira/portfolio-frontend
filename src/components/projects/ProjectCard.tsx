@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card as RBCard, Button } from 'react-bootstrap';
+import { ThreeDots } from 'react-bootstrap-icons'
 
 interface ProjectCardProps {
     image: string;
@@ -18,7 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ image, title, description, on
                     {description.length > 200 ? `${description.slice(0, 200)}...` : description}
                 </RBCard.Text>
                 <Button className="more-btn" onClick={onLearnMore}>
-                    ...
+                    <ThreeDots size={24} />
                 </Button>
             </RBCard.Body>
         </RBCard>

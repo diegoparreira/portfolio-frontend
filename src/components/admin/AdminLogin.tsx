@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Alert, Card } from "react-bootstrap";
+import { Row, Form, Alert, Card } from "react-bootstrap";
+import { ModernButton } from "./commons";
 
 interface AdminLoginProps {
     onLogin: (username: string, password: string) => void;
@@ -48,8 +49,13 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin, error }) => {
                         </Form.Floating>
                     </Form.Group>
                     {error && <Alert variant="danger">{error}</Alert>}
+
                     <div className="d-flex justify-content-center mt-3">
-                        <Button variant="primary" type="submit" className="main-button px-5 py-2">Login</Button>
+                        <ModernButton
+                            icon="login"
+                            size="sm"
+                            submit
+                        />
                     </div>
                 </Form>
             </Card>

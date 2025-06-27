@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 import AboutModal from '../about/AboutModal';
+import { ThreeDots } from 'react-bootstrap-icons';
 
 const HeroSection: React.FC = () => {
     const [showAboutModal, setShowAboutModal] = useState(false);
@@ -35,7 +36,9 @@ const HeroSection: React.FC = () => {
                 <Col xs={12} md={3} className="hero-avatar-col">
                     <Image src="/profile.jpg" alt="Avatar" roundedCircle fluid className="border border-3 border-light shadow-sm mb-4" />
                 </Col>
-                <Button className="more-btn hero-btn" variant="primary" size="sm" onClick={handleOpenModal}>...</Button>
+                <Button className="more-btn hero-btn" variant="primary" size="sm" onClick={handleOpenModal}>
+                    <ThreeDots size={24} />
+                </Button>
             </Row>
             <AboutModal
                 show={showAboutModal}
