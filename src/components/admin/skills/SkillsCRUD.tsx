@@ -31,6 +31,16 @@ const SkillsCRUD: React.FC = () => {
         setEditingSkill(null);
     };
 
+    const handleFavoriteToggle = async (skill: Skill, newValue: boolean): Promise<void> => {
+        try {
+            // @ts-ignore: favorite is a dynamic field for Certification
+            await updateSkill(skill.id, { favorite: newValue });
+            refetch();
+        } catch (err) {
+            console.error("Error updating favorite:", err);
+        }
+    };
+
     const handleSubmit = async (data: Partial<Skill>) => {
         try {
             if (editingSkill) {
@@ -67,6 +77,7 @@ const SkillsCRUD: React.FC = () => {
                                 key={skill.id}
                                 skill={skill}
                                 onEdit={() => handleEdit(skill)}
+                                onFavoriteToggle={(newValue: boolean) => handleFavoriteToggle(skill, newValue)}
                             />
                         ))}
                     </ul>

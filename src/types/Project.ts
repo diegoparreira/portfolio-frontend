@@ -14,4 +14,5 @@ export interface Project {
     repository_url: string | null;
     created_at: string; // ISO timestamp
     updated_at: string; // ISO timestamp
+    favorite: boolean;
 }

@@ -31,6 +31,16 @@ const CertificationsCRUD: React.FC = () => {
         setEditingCertification(null);
     };
 
+    const handleFavoriteToggle = async (certification: Certification, newValue: boolean): Promise<void> => {
+        try {
+            // @ts-ignore: favorite is a dynamic field for Certification
+            await updateCertification(certification.id, { favorite: newValue });
+            refetch();
+        } catch (err) {
+            console.error("Error updating favorite:", err);
+        }
+    };
+
     const handleSubmit = async (data: Partial<Certification>) => {
         try {
             if (editingCertification) {
@@ -67,6 +77,7 @@ const CertificationsCRUD: React.FC = () => {
                                 key={certification.id}
                                 certification={certification}
                                 onEdit={() => handleEdit(certification)}
+                                onFavoriteToggle={(newValue: boolean) => handleFavoriteToggle(certification, newValue)}
                             />
                         ))}
                     </ul>
