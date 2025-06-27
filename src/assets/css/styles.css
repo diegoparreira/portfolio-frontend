@@ -530,7 +530,8 @@ body {
 }
 
 .project-image {
-    max-height: 1400px;
+    max-height: 600px;
+    margin: 0 auto;
     object-fit: cover;
 }
 

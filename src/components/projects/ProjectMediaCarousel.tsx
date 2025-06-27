@@ -32,7 +32,6 @@ const ProjectMediaCarousel: React.FC<ProjectMediaCarouselProps> = ({ screenshots
                         <img
                             src={item.url}
                             className="d-block w-100 rounded-3 project-image"
-                            style={{ objectFit: "cover", margin: "0 auto" }}
                             alt={alt || `Screenshot ${idx + 1}`}
                         />
                     ) : item.type === "youtube" ? (
