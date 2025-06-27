@@ -1,0 +1,25 @@
+/* === Admin Login === */
+.admin-login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  min-height: 100%;
+  margin: auto;
+}
+
+.admin-login-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  background: var(--color-card-bg);
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Remove blue focus styling from admin login inputs */
+.admin-login-card .form-control:focus {
+  box-shadow: none !important;
+  border-color: var(--color-grey-border) !important;
+  outline: none !important;
+}

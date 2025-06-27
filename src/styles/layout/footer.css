@@ -1,0 +1,73 @@
+/* === Footer Styles === */
+.custom-footer {
+  background: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-lg) 0 var(--spacing-md) 0;
+  margin-top: auto;
+}
+
+.footer-row {
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.footer-social-list {
+  display: flex;
+  gap: var(--spacing-md);
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  justify-content: center;
+}
+
+.footer-social-item {
+  display: flex;
+  align-items: center;
+}
+
+.footer-copy-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-copy {
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+  font-size: 0.98rem;
+}
+
+.social-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.social-icon:hover {
+  background: var(--color-main-dark);
+  color: var(--color-text-light);
+}
+
+/* Footer responsive styles */
+@media (max-width: 768px) {
+  .footer-row {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .footer-copy {
+    font-size: 0.92rem;
+  }
+}

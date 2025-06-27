@@ -1,35 +1,41 @@
-import { useState } from "react";
-import AdminLogin from "../components/admin/AdminLogin";
-import AdminPanel from "../components/admin/AdminPanel";
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/footer/Footer";
+import { useAuth } from '../contexts/AuthContext';
+import AdminLogin from '../components/admin/AdminLogin';
+import AdminPanel from '../components/admin/AdminPanel';
+import Navbar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
+import { Spinner } from 'react-bootstrap';
 
 function Admin() {
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [error, setError] = useState("");
+  const { isAuthenticated, isLoading, login } = useAuth();
 
-    const handleLogin = (username: string, password: string) => {
-        if (username === "admin" && password === "password") {
-            setLoggedIn(true);
-            setError("");
-        } else {
-            setError("Invalid credentials");
-        }
-    };
+  const handleLogin = async (username: string, password: string) => {
+    const success = await login(username, password);
+    if (!success) {
+      throw new Error('Invalid credentials');
+    }
+  };
 
+  if (isLoading) {
     return (
-        <div className="min-vh-100 d-flex flex-column bg-light">
-            <Navbar />
-            <div className="admin-content">
-                {!loggedIn ? (
-                    <AdminLogin onLogin={handleLogin} error={error} />
-                ) : (
-                    <AdminPanel />
-                )}
-            </div>
-            <Footer />
+      <div className="min-vh-100 d-flex flex-column bg-light">
+        <Navbar />
+        <div className="d-flex justify-content-center align-items-center flex-grow-1">
+          <Spinner animation="border" variant="primary" />
         </div>
+        <Footer />
+      </div>
     );
+  }
+
+  return (
+    <div className="min-vh-100 d-flex flex-column bg-light">
+      <Navbar />
+      <div className="admin-content">
+        {!isAuthenticated ? <AdminLogin onLogin={handleLogin} /> : <AdminPanel />}
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 export default Admin;

@@ -1,0 +1,73 @@
+/* === Admin Panel Layout === */
+.admin-content {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.admin-panel-flex {
+  display: flex;
+  flex: 1 1 0%;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+.admin-panel-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  flex: 0 0 220px;
+  border-right: 1px solid #eee;
+  padding-top: var(--spacing-lg);
+  width: 220px;
+}
+
+.admin-panel-nav {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1 1 0%;
+  min-height: 0;
+}
+
+.admin-panel-nav-item {
+  padding: var(--spacing-md) var(--spacing-lg);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  border: none;
+  background: none;
+  transition: background 0.2s;
+}
+
+.admin-panel-nav-item.active,
+.admin-panel-nav-item:hover {
+  background: var(--color-main-dark);
+  color: var(--color-text-light);
+}
+
+.admin-panel-content {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+  background: var(--color-card-bg);
+  padding: var(--spacing-lg);
+  overflow: hidden;
+}
+
+.panel-section-header {
+  margin-bottom: var(--spacing-md);
+}
+
+.scroll-area {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 0;
+}

@@ -1,0 +1,117 @@
+/* === Card Components === */
+.custom-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card > .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.project-card-description {
+  text-align: justify;
+  text-justify: inter-word;
+  min-height: 120px;
+  max-height: 120px;
+  overflow: hidden;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.project-card .more-btn {
+  margin: var(--spacing-md) auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-item {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 0.75rem var(--spacing-md);
+}
+
+.skill-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-name {
+  font-weight: 600;
+}
+
+.skill-level {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.certification-item {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 0.75rem var(--spacing-md);
+}
+
+.certification-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.certification-title {
+  font-weight: 600;
+}
+
+.certification-issuer {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive card styles */
+@media (max-width: 992px) {
+  .project-card {
+    min-height: 340px;
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    min-height: 260px;
+    padding: 0.25rem;
+  }
+
+  .project-card-description {
+    min-height: 80px;
+    max-height: 80px;
+    font-size: 0.98rem;
+  }
+
+  .custom-card,
+  .certification-item,
+  .skill-item {
+    padding: var(--spacing-sm) 0.75rem;
+  }
+}

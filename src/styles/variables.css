@@ -1,0 +1,43 @@
+/* === Design System Variables === */
+:root {
+  /* Colors */
+  --color-bg: #f8f9fa;
+  --color-main: #888888;
+  --color-main-dark: #555555;
+  --color-accent: #007bff;
+  --color-danger: #d9534f;
+  --color-danger-dark: #b52a25;
+
+  /* Borders */
+  --color-border: #dee2e6;
+  --color-border-light: #e0e0e0;
+  --color-border-dark: #bbb;
+
+  /* Backgrounds */
+  --color-card-bg: #fff;
+
+  /* Text */
+  --color-text: #333;
+  --color-text-light: #fff;
+  --color-text-muted: #6c757d;
+  --color-text-dark: #222;
+  --color-grey-border: #565e64;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 50px;
+
+  /* Shadows */
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow-md: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 -2px 12px 0 rgba(0, 0, 0, 0.07);
+}

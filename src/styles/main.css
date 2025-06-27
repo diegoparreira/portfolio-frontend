@@ -1,0 +1,51 @@
+/* === Main Styles === */
+/* Import design system */
+@import './variables.css';
+@import './globals.css';
+
+/* Import component styles */
+@import './components/buttons.css';
+@import './components/forms.css';
+@import './components/cards.css';
+@import './components/modals.css';
+
+/* Import layout styles */
+@import './layout/hero.css';
+@import './layout/footer.css';
+
+/* Import admin styles */
+@import './admin/admin-panel.css';
+@import './admin/admin-forms.css';
+@import './admin/admin-tables.css';
+
+/* === Additional Styles === */
+.section-title {
+  font-weight: bold;
+  color: var(--color-main-dark);
+}
+
+.skills-section {
+  background: var(--color-bg);
+}
+
+.skill-icon {
+  transition: transform 0.3s ease;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+}
+
+.skill-icon:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.project-image {
+  max-height: 600px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.certification-badge {
+  max-width: 100px;
+  max-height: 100px;
+}
