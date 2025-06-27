@@ -1,21 +1,13 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import type { ProjectFieldConfig } from '../projects/projectFormConfig';
-import type { SkillFieldConfig } from '../skills/skillFormConfig';
-import type { CertificationFieldConfig } from '../certifications/certificationFormConfig';
-import type { FieldConfig as CRUDFieldConfig } from './CRUDForm';
+import type { GenericFormFieldConfig } from './GenericForm';
 import FormField from './FormField';
 import ScreenshotUrlsInput from '../projects/screenshot/ScreenshotUrlsInput';
 
-type FieldConfig =
-  | ProjectFieldConfig
-  | SkillFieldConfig
-  | CertificationFieldConfig
-  | CRUDFieldConfig;
 type InputTypes = 'text' | 'textarea' | 'number' | 'email' | 'password' | 'select' | 'date';
 
 interface ConfigurableFormFieldProps {
-  config: FieldConfig;
+  config: GenericFormFieldConfig;
   value: string | string[] | undefined;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
