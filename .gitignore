@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 .env
+*.env
+
+DEPLOYMENT.md
+netlify.toml
+.vitepress/dist

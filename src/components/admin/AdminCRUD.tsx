@@ -1,9 +1,9 @@
-import { CRUDList, CRUDForm, FavoriteStar, type FieldConfig } from './commons';
+import { CRUDList, FavoriteStar, GenericForm, type GenericFormFieldConfig } from './commons';
 import Modal from '../commons/Modal';
-import ProjectMediaCarousel from '../projects/ProjectMediaCarousel';
+import ProjectMediaCarousel from '../home/projects/ProjectMediaCarousel';
 
 interface AdminCRUDProps {
-  fields: FieldConfig[];
+  fields: GenericFormFieldConfig[];
   fetchItems: () => Promise<Record<string, unknown>[]>;
   createItem: (data: Record<string, unknown>) => Promise<unknown>;
   updateItem: (id: string | number, data: Record<string, unknown>) => Promise<unknown>;
@@ -87,7 +87,7 @@ const AdminCRUD = ({
           />
         </div>
       ) : null}
-      <CRUDForm
+      <GenericForm
         fields={fields}
         initialData={editingObject || {}}
         onSubmit={handleSubmit}

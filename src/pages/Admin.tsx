@@ -1,8 +1,8 @@
 import { useAuth } from '../contexts/AuthContext';
 import AdminLogin from '../components/admin/AdminLogin';
 import AdminPanel from '../components/admin/AdminPanel';
-import Navbar from '../components/navbar/Navbar';
-import Footer from '../components/footer/Footer';
+import Navbar from '../components/commons/navbar/Navbar';
+import Footer from '../components/commons/footer/Footer';
 import { Spinner } from 'react-bootstrap';
 
 function Admin() {

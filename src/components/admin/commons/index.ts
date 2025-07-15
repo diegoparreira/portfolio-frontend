@@ -4,7 +4,7 @@ export { default as CRUDForm, type FieldConfig } from './CRUDForm';
 export { default as CRUDList } from './CRUDList';
 export { default as ErrorAlert } from './ErrorAlert';
 export { default as FormField } from './FormField';
-export { default as GenericForm } from './GenericForm';
+export { default as GenericForm, type GenericFormFieldConfig } from './GenericForm';
 export { default as ImagePreview } from './ImagePreview';
 export { default as ListItem } from './ListItem';
 export { default as ModernButton } from './ModernButton';

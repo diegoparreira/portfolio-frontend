@@ -13,13 +13,14 @@ export interface AdminSectionConfig {
     fields: Array<{
       name: string;
       label: string;
-      type: 'text' | 'textarea' | 'date' | 'select';
+      type: 'text' | 'textarea' | 'date' | 'select' | 'custom';
       required?: boolean;
       placeholder?: string;
       options?: string[];
       minLength?: number;
       maxLength?: number;
       pattern?: string;
+      customComponent?: 'screenshot_urls';
     }>;
     fetchItems: () => Promise<Record<string, unknown>[]>;
     createItem: (data: Record<string, unknown>) => Promise<unknown>;
@@ -88,8 +89,9 @@ export const ADMIN_SECTIONS: AdminSectionConfig[] = [
         },
         {
           name: 'demo_screenshots_urls',
-          type: 'textarea',
-          label: 'Demo Screenshot URLs (comma separated)',
+          type: 'custom',
+          label: 'Demo Screenshot URLs',
+          customComponent: 'screenshot_urls',
         },
       ],
       fetchItems: fetchProjects as unknown as () => Promise<Record<string, unknown>[]>,

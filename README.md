@@ -103,9 +103,10 @@ src/
 
 ### Development
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+- `npm run dev` - Start development server (Hot reload, debugging)
+- `npm run build` - Build for production (Optimized, minified)
+- `npm run preview` - Preview production build locally
+- `npm run deploy` - Build and prepare for deployment
 
 ### Code Quality
 
@@ -120,6 +121,41 @@ src/
 - `npm run test:run` - Run tests once
 - `npm run test:ui` - Open test UI
 - `npm run test:coverage` - Generate coverage report
+
+## 🔧 Running the Application
+
+### 🚀 Development Mode (Recommended for coding)
+
+```bash
+npm run dev
+```
+
+- **Hot reload** - Changes appear instantly
+- **Source maps** - Easy debugging
+- **Development optimizations**
+- **Available at:** http://localhost:5173
+
+### 🏗️ Production Preview (Test before deployment)
+
+```bash
+npm run build
+npm run preview
+```
+
+- **Production build** - Optimized and minified
+- **Real deployment conditions** - Matches live site
+- **Performance testing** - Check load times
+- **Available at:** http://localhost:4173
+
+### ❌ Don't Open dist/index.html Directly
+
+Opening the HTML file directly in your browser will cause CORS errors because:
+
+- Modern apps require HTTP server (not file:// protocol)
+- ES modules need proper MIME types
+- Security restrictions block local file access
+
+**Always use `npm run preview` to test production builds!**
 
 ## 🔐 Admin Panel
 
@@ -244,27 +280,3 @@ This project is private and proprietary.
 - Optimize images and reduce bundle size
 - Enable React.memo for frequently re-rendered components (implemented)
 - Use React Query for efficient data fetching and caching
-
-````
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-````
